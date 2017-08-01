@@ -1,0 +1,30 @@
+{
+    "name": "cake_quote_app",
+    "version": "1.0.0",
+    "description": "Node express app with mongodb for generating instant quotes for bakery.",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "body-parser": "~1.17.1",
+        "cookie-parser": "~1.4.3",
+        "debug": "~2.6.3",
+        "express": "~4.15.2",
+        "express-handlebars": "^3.0.0",
+        "hbs": "~4.0.1",
+        "mongoose": "^4.11.5",
+        "morgan": "~1.8.1",
+        "serve-favicon": "~2.4.2"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Lou-HTX/cake_quote_app.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Lou-HTX/cake_quote_app/issues"
+    },
+    "homepage": "https://github.com/Lou-HTX/cake_quote_app#readme"
+}
