@@ -6,12 +6,24 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressHbs = require('express-handlebars');
 var mongoose = require('mongoose');
-
 var index = require('./routes/index');
 
 var app = express();
 
-mongoose.connect('localhost: 27017/shopping');
+
+// mongoose.Promise = Promise;
+
+// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopping');
+// var db = mongoose.connection;
+
+// var promise = mongoose.connect("mongodb://localhost/shopping", {
+//     useMongoClient: true\
+// });
+// promise.then(function(db){});
+// mongoose.Promise = Promise;
+
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/shopping");
+// const db = mongoose.connection;
 
 // view engine setup
 app.engine('.hbs', expressHbs({ defaultLayout: 'layout', extname: '.hbs' }));
