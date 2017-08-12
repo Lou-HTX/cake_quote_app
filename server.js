@@ -4,6 +4,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 var index = require('./routes/index');
 var path = require('path');
+var session = require('express-session');
 
 const app = express();
 
@@ -19,6 +20,7 @@ const db = mongoose.connection;
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({secret: 'mopedsarecool', resave: false, saveUninitialized: false}));
 // app.use(express.static(__dirname + 'public'));
 
 
