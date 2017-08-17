@@ -27,13 +27,13 @@ require('./config/passport');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(validator());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(session({
-    secret: 'mopedsarecool', 
-    resave: false, 
+    secret: 'mopedsarecool',
+    resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
     cookie: { maxAge: 180 * 60 * 1000 }
@@ -55,10 +55,9 @@ db.on('error', (error) => {
     console.log(error);
 });
 
-app.engine('.hbs', exphbs({defaultLayout: 'layout' , extname:'.hbs'}));
+app.engine('.hbs', exphbs({ defaultLayout: 'layout', extname: '.hbs' }));
 app.set('view engine', '.hbs');
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);
 });
-
