@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var Cart = require('../models/cart');
 
-var Product = require('../models/product')
+var Product = require('../models/product');
 var expressValidator = require('express-validator');
 router.use(expressValidator());
 
@@ -20,7 +21,7 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/cart/:id', function(req, res, next) {
+router.get('/add-to-cart/:id', function(req, res, next) {
     var productId = req.params.id;
     var cart = new Cart(req.session.cart ? req.session.cart : {});
 
