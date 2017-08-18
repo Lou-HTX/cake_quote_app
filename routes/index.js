@@ -36,12 +36,13 @@ router.get('/add-to-cart/:id', function(req, res, next) {
     });
 });
 
+
 router.get('/shopping-cart', function(req, res, next) {
     if (!req.session.cart) {
-        return res.render('shop/shopping-cart', { products: null });
+        return res.render('shop/shopping-cart', { cartProducts: null });
     }
     var cart = new Cart(req.session.cart);
-    res.render('shop/shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice });
+    res.render('shop/shopping-cart', { cartProducts: cart.generateArray(), totalPrice: cart.totalPrice });
 });
 
 
