@@ -42,6 +42,7 @@ router.get('/shopping-cart', function(req, res, next) {
         return res.render('shop/shopping-cart', { cartProducts: null });
     }
     var cart = new Cart(req.session.cart);
+    console.log(cart);
     res.render('shop/shopping-cart', { cartProducts: cart.generateArray(), totalPrice: cart.totalPrice });
 });
 

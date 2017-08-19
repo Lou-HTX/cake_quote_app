@@ -12,14 +12,14 @@ module.exports = function Cart(oldCart) {
         storedItem.price = storedItem.item.price * storedItem.qty;
         this.totalQty++;
         this.totalPrice += storedItem.item.price;
-    };
+    },
     this.generateArray = function() {
         var arr = [];
-        for (var id in this.items) {
-            arr.push(this.items[id]);
+        for (item in this.items) {
+            arr.push(item);
         }
         return arr;
-    };
+    }
 };
 
 // module.exports = function Cart(oldCart) {
