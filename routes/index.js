@@ -31,10 +31,15 @@ router.get('/add-to-cart/:id', function(req, res, next) {
         }
         cart.add(product, product.id);
         req.session.cart = cart;
-        console.log(req.session.cart);
+        // console.log(req.session.cart);
+        // console.log("<=================================================================>");
+        // console.log(req.session.cart.items);
+        // console.log("<=================================================================>");
+        // console.log(req.session.cart.items.id);
         res.redirect('/');
     });
 });
+
 
 
 router.get('/shopping-cart', function(req, res, next) {
@@ -42,7 +47,18 @@ router.get('/shopping-cart', function(req, res, next) {
         return res.render('shop/shopping-cart', { cartProducts: null });
     }
     var cart = new Cart(req.session.cart);
+    console.log('this is the cart')
     console.log(cart);
+    console.log("<=================================================================>");
+    console.log("these are the items in the cart");
+    console.log(cart.items);
+    console.log("<=================================================================>");
+    console.log("these are the items in the items in the cart");
+    console.log(cart.items.items);
+    console.log("<=================================================================>");
+    console.log("<===== This is the id of the first item in the cart =====>");
+    // console.log(cart.items.items.id);
+
     res.render('shop/shopping-cart', { cartProducts: cart.generateArray(), totalPrice: cart.totalPrice });
 });
 

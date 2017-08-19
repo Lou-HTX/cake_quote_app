@@ -1,5 +1,5 @@
 module.exports = function Cart(oldCart) {
-    this.items = oldCart || {};
+    this.items = oldCart.items || {};
     this.totalQty = oldCart.totalQty || 0;
     this.totalPrice = oldCart.totalPrice || 0;
 
@@ -12,14 +12,15 @@ module.exports = function Cart(oldCart) {
         storedItem.price = storedItem.item.price * storedItem.qty;
         this.totalQty++;
         this.totalPrice += storedItem.item.price;
-    },
+    };
+
     this.generateArray = function() {
         var arr = [];
-        for (item in this.items) {
-            arr.push(item);
+        for (var id in this.items) {
+            arr.push(this.items[id]);
         }
         return arr;
-    }
+    };
 };
 
 // module.exports = function Cart(oldCart) {
