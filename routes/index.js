@@ -120,7 +120,7 @@ router.post('/charge', function(req, res, next) {
         return res.redirect('/checkout');
     }
     req.flash('success', 'Successfully placed order!');
-    req.cart = null;
+    req.session.cart = null;
     res.redirect('/');
     });   
 });
