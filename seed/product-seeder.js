@@ -3,8 +3,9 @@ var mongoose = require('mongoose');
 
 mongoose.Promise = Promise;
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shopping');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://test:Welcome01@ds155587.mlab.com:55587/heroku_25f351d9');
 const db = mongoose.connection;
+// mongodb://localhost/shopping
 
 
 var products = [
