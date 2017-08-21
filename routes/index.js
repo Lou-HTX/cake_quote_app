@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
         for (var i = 0; i < docs.length; i += chunkSize) {
             productChunks.push(docs.slice(i, i + chunkSize));
         }
-        res.render('shop/index', { title: 'Shopping Cart', products: productChunks, successMsg: successMsg, noMessages: !successMsg});
+        res.render('shop/index', { title: 'Shopping Cart', products: productChunks, successMsg: successMsg, noMessages: !successMsg });
     });
 });
 
@@ -44,9 +44,18 @@ router.get('/add-to-cart/:id', function(req, res, next) {
 
 router.get('/reduce/:id', function(req, res, next) {
     var productId = req.params.id;
-    var cart = new Cart(req.session.cart ? req.session.cart: {});
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
 
     cart.reduceByOne(productId);
+    req.session.cart = cart;
+    res.redirect('/shopping-cart');
+});
+
+router.get('/remove/:id', function(req, res, next) {
+    var productId = req.params.id;
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+    cart.removeItem(productId);
     req.session.cart = cart;
     res.redirect('/shopping-cart');
 });
@@ -78,7 +87,7 @@ router.get('/checkout', isLoggedIn, function(req, res, next) {
     }
     var cart = new Cart(req.session.cart);
     var errMsg = req.flash('error')[0];
-    res.render('shop/checkout', {total: cart.totalPrice, errMsg: errMsg, noError: !errMsg});
+    res.render('shop/checkout', { total: cart.totalPrice, errMsg: errMsg, noError: !errMsg });
 });
 
 router.post('/charge', isLoggedIn, function(req, res, next) {
@@ -98,22 +107,22 @@ router.post('/charge', isLoggedIn, function(req, res, next) {
         source: token,
     }, function(err, charge) {
         if (err) {
-        req.flash('error', err.message);
-        return res.redirect('/checkout');
-    }
-    var order = new Order({
-        user: req.user,
-        cart: cart,
-        address: req.body.address,
-        name: req.body.name,
-        paymentId: charge.id
+            req.flash('error', err.message);
+            return res.redirect('/checkout');
+        }
+        var order = new Order({
+            user: req.user,
+            cart: cart,
+            address: req.body.address,
+            name: req.body.name,
+            paymentId: charge.id
+        });
+        order.save(function(err, result) {
+            req.flash('success', 'Successfully placed order!');
+            req.session.cart = null;
+            res.redirect('/');
+        });
     });
-    order.save(function(err, result) {
-    req.flash('success', 'Successfully placed order!');
-    req.session.cart = null;
-    res.redirect('/');
-    });   
-});
 });
 
 module.exports = router;
