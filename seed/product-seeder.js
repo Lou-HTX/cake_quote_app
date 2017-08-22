@@ -16,13 +16,13 @@ var products = [
         price: 10
     }),
      new Product({
-        imagePath: '/images/bb-8.png',
+        imagePath: '/images/cake11.jpg',
         title: 'BB-8 Cake',
         description: 'Awesome BB-8 cake',
         price: 10
     }),
      new Product({
-        imagePath: '/images/batman_cake.png',
+        imagePath: '/images/cake12.jpg',
         title: 'Batman Cake',
         description: 'Awesome Batman cake',
         price: 10
